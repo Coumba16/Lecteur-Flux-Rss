@@ -1,5 +1,5 @@
                  Technologies utilisées : 
-Angular, php , javascript, json, html, css, NodeJS, bootstrap, jquery, font-awesome, git , github, phpStorm
+Angular, php , javascript, json, html, css, NodeJS, bootstrap, jquery, font-awesome, git , github, Visual Studio Code
 
              Processus de lancement de l'application
 npm install - g @angular/cli (pour installer le framework angular)

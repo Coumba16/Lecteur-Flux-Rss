@@ -3,18 +3,10 @@
 <head>
 
   <!-- Adding CDN scripts required for our page -->
-  <script src=
-            "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js">
-  </script>
-  <script src=
-            "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js">
-  </script>
-  <script src=
-            "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js">
-  </script>
-  <script src=
-            "https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js">
-  </script>
+  <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js">  </script>
+  <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js">  </script>
+  <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js">  </script>
+  <script src= "https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js">  </script>
 
   <script>
       // Adding Modules
@@ -24,11 +16,60 @@
         $scope.currentPage = 4;
         });
     </script>
-  <link href=
-          "https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        rel="stylesheet">
+  <link href=  "https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">actualité</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">sport</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">Apropos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">contact</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="text" placeholder="Search">
+            <button class="btn btn-primary" type="button">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+
 </head>
+
+
 <body>
+
+<div class= 'container'>
+  <?php
+  $xml = simplexml_load_file("https://www.lemonde.fr/rss/en_continu.xml");
+  echo '<ul class = "list-group">';
+  foreach ($xml->item->title;){
+  $title= $item->title;
+  $link =  $item->link;
+  $description =  $item->description;
+  $date =  $item->pubDate;
+  echo '<li class= "list-grouo-item"><a href="'.$link.'">'.$title.'</a><hr>'.descripption.'<br>' .$date.'</li>';
+  }
+  echo '</ul>';
+  ?>
+</div>
+
 <div ng-controller="pagination">
 
   <!-- making a pagination -->
@@ -46,49 +87,6 @@
       last-text="»"></ul>
 </div>
 
-<div>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="javascript:void(0)">Logo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">actualité</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">sport</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Apropos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">contact</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Search">
-          <button class="btn btn-primary" type="button">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-</div>
 
-<?php
-$xml = simplexml_load_file('https://www.lemonde.fr/rss/en_continu.xml');
-foreach ($xml->article as $i){
-echo '<h1>'.$i->titre.'</h1>';
-echo '<p>'.$i->contenu.'</p>';
-echo '<p>'.date('d/m/y', strtstime($i->date)).'</p>';
-echo '<img>'.$i->image.'</img>';
-
-}
-?>
 </body>
 </html>
-
-
-
